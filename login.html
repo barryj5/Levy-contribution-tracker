@@ -1,0 +1,46 @@
+!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <title>Levy</title>
+</head>
+<body class="loginBody">
+  <div class="loginWrapper">
+    <div class="loginImagePanel">
+      <h2 class="loginLogo">Levy</h2>
+      <div class="loginImageCaption">
+        <p>Every contribution,<br>Accounted for.</p>
+      </div>
+    </div>
+
+    <div class="loginFormPanel">
+      <h1 class="loginTitle" id="formTitle">Sign in to continue</h1>
+      <p class="loginSubtext" id="toggleText">Don't have an account? <span id="toggleLink">Sign up</span></p>
+
+      <input type="text" id="displayNameInput" class="loginInput" placeholder="Display name" style="display:none">
+      <input type="email" id="emailInput" class="loginInput" placeholder="Email">
+
+      <div class="passwordWrapper">
+        <input type="password" id="passwordInput" class="loginInput" placeholder="Password">
+        <i class="fa-solid fa-eye togglePasswordIcon" data-target="passwordInput"></i>
+      </div>
+      <div class="passwordWrapper" id="confirmPasswordWrapper" style="display:none">
+        <input type="password" id="confirmPasswordInput" class="loginInput" placeholder="Confirm password">
+        <i class="fa-solid fa-eye togglePasswordIcon" data-target="confirmPasswordInput"></i>
+      </div>
+
+      <button class="loginSubmitButton" id="submitButton">Sign In</button>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabaseClient.js"></script>
+  <script src="login.js"></script>
+</body>
+</html>
