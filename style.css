@@ -219,3 +219,57 @@ html, body {
 .togglePasswordIcon:hover {
   color: white;
 }
+
+.homeSideNavBar {
+  position: fixed;
+  left: 0;
+  top: 40px;
+  height: calc(100vh - 75px);
+  width: 55px;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  padding-top: 20px;
+  width: 180px;
+  border-right: 2px solid #d4a656;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+.sideBarItem {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 25px;
+  /* white-space: nowrap; */
+  cursor: pointer;
+  color:#c9a24b;
+  font-size: 20px;
+}
+.sideBarItem:hover {
+  border-left: 3px solid #d4a656;
+}
+.sideBarBottom{
+  margin-top: auto;
+}
+.sideBarItem i {
+  width: 25px;
+  text-align: center;
+  color:#c9a24b;
+}
+
+#Logout {
+  margin-top: auto;
+  margin-bottom: 80px;
+}
+.homeBody{
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  background-color: #0d0d0d;
+}
+.homeHeading{
+  padding-left: 30px;
+  padding-top: 20px;
+  margin-bottom: 40px;
+  font-size: 40px;
+  color: #c9a24b;
+}
