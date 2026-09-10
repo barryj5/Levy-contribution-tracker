@@ -1,5 +1,12 @@
-
-const goalPage = document.getElementById("SavedPage")
+const goalsGrid = document.getElementById("goalsGrid")
+const newGoalButton = document.getElementById("newGoalButton")
+const newGoalModal = document.getElementById("newGoalModal")
+const modalCancel = document.getElementById("modalCancel")
+const createGoalButton = document.getElementById("createGoalButton")
+const goalNameInput = document.getElementById("goalNameInput")
+const goalTypeInput = document.getElementById("goalTypeInput")
+const goalAmountInput = document.getElementById("goalAmountInput")
+const homePage = document.getElementById("home")
 const Profile = document.getElementById("AddButton")
 const logoutButton = document.getElementById("Logout")
 
@@ -18,11 +25,9 @@ Profile.onclick = function(){
   window.location.href = "profile.html"
 }
 
-goalPage.onclick = function(){
-  window.location.href = "goals.html"
+homePage.onclick = function(){
+  window.location.href = "home.html"
 }
-
-const goalsGrid = document.getElementById("goalsGrid")
 
 async function loadGoals(){
   const { data: { user } } = await sb.auth.getUser()
@@ -48,6 +53,8 @@ async function loadGoals(){
     const card = await buildGoalCard(goal)
     goalsGrid.appendChild(card)
   }
+
+  newGoalButton.style.display = goals.length >= 5 ? "none" : "block"
 }
 
 async function buildGoalCard(goal){
@@ -81,46 +88,47 @@ async function buildGoalCard(goal){
   return card
 }
 
-async function loadOverallProgress(){
-  const { data: { user } } = await sb.auth.getUser()
-
-  const { data: goals, error: goalsError } = await sb
-    .from("goals")
-    .select("*")
-    .eq("user_id", user.id)
-
-  if(goalsError){
-    alert(goalsError.message)
-    return
-  }
-
-  const goalIds = goals.map(goal => goal.id)
-
-  const { data: contributions, error: contributionsError } = await sb
-    .from("contributions")
-    .select("amount")
-    .in("goal_id", goalIds)
-
-  if(contributionsError){
-    alert(contributionsError.message)
-    return
-  }
-
-  const totalSaved = contributions.reduce((sum, c) => sum + Number(c.amount), 0)
-  const totalTarget = goals.reduce((sum, g) => sum + Number(g.target_amount), 0)
-  const percent = totalTarget > 0 ? Math.max(0, Math.min(100, (totalSaved / totalTarget) * 100)) : 0
-
-  const circumference = 2 * Math.PI * 50
-  const offset = circumference - (percent / 100) * circumference
-
-  const ringFill = document.getElementById("overallRingFill")
-  const percentText = document.getElementById("overallPercentText")
-
-  ringFill.setAttribute("stroke-dasharray", circumference)
-  ringFill.setAttribute("stroke-dashoffset", offset)
-  percentText.textContent = `${Math.round(percent)}%`
+newGoalButton.onclick = function(){
+  newGoalModal.classList.add("active")
 }
 
-loadOverallProgress()
+modalCancel.onclick = function(){
+  newGoalModal.classList.remove("active")
+}
+
+createGoalButton.onclick = async function(){
+  const name = goalNameInput.value.trim()
+  const goalType = goalTypeInput.value
+  const amount = Number(goalAmountInput.value)
+
+  if(!name || !amount || amount <= 0){
+    alert("Please fill in a valid goal name and amount")
+    return
+  }
+
+  const { data: { user } } = await sb.auth.getUser()
+
+  if(!user){
+    alert("You must be logged in")
+    return
+  }
+
+  const { error } = await sb.from("goals").insert({
+    user_id: user.id,
+    name: name,
+    goal_type: goalType,
+    target_amount: amount
+  })
+
+  if(error){
+    alert(error.message)
+    return
+  }
+
+  newGoalModal.classList.remove("active")
+  goalNameInput.value = ""
+  goalAmountInput.value = ""
+  loadGoals()
+}
 
 loadGoals()

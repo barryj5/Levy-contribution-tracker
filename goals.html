@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <title>Levy</title>
+</head>
+<body class="homeBody">
+    <nav class="homeSideNavBar">
+      <h2 class="homeHeading">Levy</h2>
+      <div class="sideBarItem" id="home">
+        <i class="fa-solid fa-house"></i><span>Home</span>
+      </div>
+      <div class="sideBarItem" id="SavedPage">
+        <i class="fa-solid fa-bullseye"></i><span>Goals</span>
+      </div>
+      <div class="sideBarItem" id="AddButton">
+        <i class="fa-solid fa-circle-user"></i><span>Profile</span>
+      </div>
+      <div class="sideBarItem" id="Logout">
+        <i class="fa-solid fa-arrow-right-from-bracket"></i><span>Logout</span>
+      </div>
+  </nav>
+
+  <section>
+    <div class="goalsGrid" id="goalsGrid">
+      <!-- cards get inserted here by JS -->
+    </div>
+
+    <button class="newGoalButton" id="newGoalButton">+ New Goal</button>
+
+    <div class="modalOverlay" id="newGoalModal">
+      <div class="modalBox">
+        <h3>Create a New Goal</h3>
+        <input type="text" id="goalNameInput" class="loginInput" placeholder="Goal name">
+        <select id="goalTypeInput" class="loginInput">
+          <option value="yearly">Yearly</option>
+          <option value="monthly">Monthly</option>
+        </select>
+        <input type="number" id="goalAmountInput" class="loginInput" placeholder="Target amount (₦)">
+        <button class="loginSubmitButton" id="createGoalButton">Create Goal</button>
+        <p id="modalCancel">Cancel</p>
+      </div>
+    </div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabaseClient.js"></script>
+  <script src="goals.js"></script>
+</body>
+</html>

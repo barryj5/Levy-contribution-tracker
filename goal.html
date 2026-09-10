@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <title>Levy</title>
+</head>
+<body class="homeBody">
+    <nav class="homeSideNavBar">
+      <h2 class="homeHeading">Levy</h2>
+      <div class="sideBarItem" id="HomeLink">
+        <i class="fa-solid fa-house"></i><span>Home</span>
+      </div>
+      <div class="sideBarItem" id="SavedPage">
+        <i class="fa-solid fa-bullseye"></i><span>Goals</span>
+      </div>
+      <div class="sideBarItem" id="AddButton">
+        <i class="fa-solid fa-circle-user"></i><span>Profile</span>
+      </div>
+      <div class="sideBarItem" id="Logout">
+        <i class="fa-solid fa-arrow-right-from-bracket"></i><span>Logout</span>
+      </div>
+  </nav>
+
+  <section>
+    <h2 id="goalDetailName" class="goalName"></h2>
+    <p id="goalDetailType" class="goalType"></p>
+
+    <div class="overallProgressWrapper">
+      <svg width="200" height="200" viewBox="0 0 120 120" class="overallRing">
+        <circle cx="60" cy="60" r="50" stroke="#333" stroke-width="10" fill="none"/>
+        <circle cx="60" cy="60" r="50" stroke="#c9a24b" stroke-width="10" fill="none"
+          stroke-linecap="round" transform="rotate(-90 60 60)"
+          class="overallRingFill" id="goalRingFill"/>
+      </svg>
+      <span class="overallPercentText" id="goalPercentText">0%</span>
+    </div>
+
+    <button class="newGoalButton" id="addContributionButton">+ Add Contribution</button>
+
+    <h3 class="goalName" style="margin-top:40px;">History</h3>
+    <div id="contributionsList"></div>
+
+    <div class="modalOverlay" id="addContributionModal">
+      <div class="modalBox">
+        <h3>Add Contribution</h3>
+        <input type="number" id="contributionAmountInput" class="loginInput" placeholder="Amount (₦, negative for withdrawal)">
+        <input type="date" id="contributionDateInput" class="loginInput">
+        <input type="text" id="contributionNoteInput" class="loginInput" placeholder="Note (optional)">
+        <input type="file" id="contributionImageInput" class="loginInput" accept="image/*">
+        <button class="loginSubmitButton" id="submitContributionButton">Save</button>
+        <p id="contributionModalCancel">Cancel</p>
+      </div>
+    </div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabaseClient.js"></script>
+  <script src="goal.js"></script>
+</body>
+</html>

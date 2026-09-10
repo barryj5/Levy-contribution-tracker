@@ -30,30 +30,15 @@
       <div class="overallProgressWrapper">
         <svg width="240" height="240" viewBox="0 0 120 120" class="overallRing">
           <circle cx="60" cy="60" r="50" stroke="#333" stroke-width="10" fill="none"/>
-          <circle cx="60" cy="60" r="50" stroke="#c9a24b" stroke-width="10" fill="none"
-            stroke-dasharray="314" stroke-dashoffset="140"
-            stroke-linecap="round" transform="rotate(-90 60 60)"
-            class="overallRingFill"/>
+        <circle cx="60" cy="60" r="50" stroke="#c9a24b" stroke-width="10" fill="none"
+        stroke-dasharray="314" stroke-dashoffset="140"
+        stroke-linecap="round" transform="rotate(-90 60 60)"
+        class="overallRingFill" id="overallRingFill"/>
         </svg>
-        <span class="overallPercentText">55%</span>
+        <span class="overallPercentText" id="overallPercentText">55%</span>
       </div>
       <div class="goalsGrid" id="goalsGrid"></div>
-
-      <button class="newGoalButton" id="newGoalButton">+ New Goal</button>
-
-      <div class="modalOverlay" id="newGoalModal">
-        <div class="modalBox">
-          <h3>Create a New Goal</h3>
-          <input type="text" id="goalNameInput" class="loginInput" placeholder="Goal name">
-          <select id="goalTypeInput" class="loginInput">
-            <option value="yearly">Yearly</option>
-            <option value="monthly">Monthly</option>
-          </select>
-          <input type="number" id="goalAmountInput" class="loginInput" placeholder="Target amount (₦)">
-          <button class="loginSubmitButton" id="createGoalButton">Create Goal</button>
-          <p id="modalCancel">Cancel</p>
-        </div>
-      </div>  
+      
     </section>
   </body>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
