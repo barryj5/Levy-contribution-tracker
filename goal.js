@@ -15,6 +15,8 @@ const contributionAmountInput = document.getElementById("contributionAmountInput
 const contributionDateInput = document.getElementById("contributionDateInput")
 const contributionNoteInput = document.getElementById("contributionNoteInput")
 const contributionImageInput = document.getElementById("contributionImageInput")
+const attestationRow = document.getElementById("attestationRow")
+const attestationCheckbox = document.getElementById("attestationCheckbox")
 
 const HomeLink = document.getElementById("HomeLink")
 const Goals = document.getElementById("SavedPage")
@@ -43,7 +45,6 @@ HomeLink.onclick = function(){
 Goals.onclick = function(){
   window.location.href = "goals.html"
 }
-
 
 let currentUserId = null
 let currentGoal = null
@@ -142,6 +143,10 @@ contributionModalCancel.onclick = function(){
   addContributionModal.classList.remove("active")
 }
 
+contributionImageInput.onchange = function(){
+  attestationRow.style.display = contributionImageInput.files.length > 0 ? "flex" : "none"
+}
+
 submitContributionButton.onclick = async function(){
   const amount = Number(contributionAmountInput.value)
   const date = contributionDateInput.value
@@ -150,6 +155,11 @@ submitContributionButton.onclick = async function(){
 
   if(!amount || !date){
     alert("Please enter a valid amount and date")
+    return
+  }
+
+  if(file && !attestationCheckbox.checked){
+    alert("Please confirm the image is genuine before submitting")
     return
   }
 
@@ -193,6 +203,8 @@ submitContributionButton.onclick = async function(){
   contributionDateInput.value = ""
   contributionNoteInput.value = ""
   contributionImageInput.value = ""
+  attestationCheckbox.checked = false
+  attestationRow.style.display = "none"
 
   await loadContributions()
 }
